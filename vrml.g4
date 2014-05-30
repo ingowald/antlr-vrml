@@ -17,6 +17,7 @@ node
     | collisionNode
     | switchNode
     | inlineNode
+		| spotLightNode
     | ortSpotLightNode
     | ortDirectionalLightNode
     | ortPointLightNode
@@ -209,6 +210,20 @@ ortSpotLightNode
     '}'
   ;
 
+spotLightNode
+  : 'SpotLight' '{'
+    ( 'color' float3
+    | 'intensity' float1
+    | 'ambientIntensity' float1
+    | 'on' bool1
+    | 'direction' float3
+    | 'location' float3
+    | 'cutOffAngle' float1
+    | 'beamWidth' float1
+    )*
+    '}'
+  ;
+
 ortDirectionalLightNode
   : 'ORTDirectionalLight' '{'
     ( 'name' string
@@ -347,6 +362,8 @@ switchNode
 pointLightNode
   : optDef 'PointLight' '{' 
     ( 'ambientIntensity' float1
+    | 'intensity' float1
+    | 'location' float3
     | 'on' boolVal
     | 'color' float3
     )*
